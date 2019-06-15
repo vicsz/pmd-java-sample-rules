@@ -15,16 +15,17 @@ public class MyRule extends AbstractJavaRule {
 
     public MyRule() {
         definePropertyDescriptor(BAD_NAME);
-        addRuleChainVisit(ASTVariableDeclaratorId.class);
     }
 
     @Override
     public Object visit(ASTVariableDeclaratorId node, Object data) {
+
         String badName = getProperty(BAD_NAME);
 
         if (node.hasImageEqualTo(badName)) {
             addViolation(data, node, node.getImage());
         }
+
         return data;
     }
 }
